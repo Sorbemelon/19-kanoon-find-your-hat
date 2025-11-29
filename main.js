@@ -23,33 +23,35 @@ let playing = true;
 
 // Board generator function
 let board = []
-let boardWidth = "";
-let boardHeight = "";
+let boardWidth = 2;
+let boardHeight = 2;
 let holeFrequency = "";
 
 const boardGenerator = () => {
 	// User input for board width, minimum 2
-	boardWidth = prompt("Enter board width (min 2): ");
-	while (!Number.isInteger(Number(boardWidth)) || Number(boardWidth) < 2) {
+	let inputWidth = prompt("Enter board width (min 2): ");
+	while (!Number.isInteger(Number(inputWidth)) || Number(inputWidth) < 2) {
 		console.log("Invalid input, please type a correct input.");
-		boardWidth = prompt("Enter board width (min 2): ");
+		inputWidth = prompt("Enter board width (min 2): ");
 	}
 	// User input for board height, minimum 2
-	boardHeight = prompt("Enter board height (min 2): ");
-	while (!Number.isInteger(Number(boardHeight)) || Number(boardHeight) < 2) {
+	let inputHeight = prompt("Enter board height (min 2): ");
+	while (!Number.isInteger(Number(inputHeight)) || Number(inputHeight) < 2) {
 		console.log("Invalid input, please type a correct input.");
-		boardHeight = prompt("Enter board height (min 2): ");
+		inputHeight = prompt("Enter board height (min 2): ");
 	}
+	boardWidth = Number(inputWidth);
+	boardHeight = Number(inputHeight);
 	// User input for hole frequency, range 0-100
-	holeFrequency = prompt("Enter hole frequency, default=70 (0-100): ");
+	holeFrequency = prompt("Enter hole frequency, default=50 (0-100): ");
 	console.log(Boolean(holeFrequency));
 	if (!Number.isInteger(Number(holeFrequency)) || !(holeFrequency) || Number(holeFrequency) < 0 || Number(holeFrequency) > 100) {
-		holeFrequency = 70;
+		holeFrequency = "50";
 	}
 
 	// Generate a null board
-	board = Array.from({ length: Number(boardHeight)}, () => (
-		Array.from({ length: Number(boardWidth)}, () => "" )
+	board = Array.from({ length: boardHeight}, () => (
+		Array.from({ length: boardWidth}, () => "" )
 	));
 
 	// Create PLAYER tile starting position
